@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Address List</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <h2>List of Addresses:</h2>
+        <tr th:each="address : ${address}">
+            <td th:text="'Name: ' + ${address.name}"/>
+            <td th:text="'Street: ' + ${address.street}"/>
+            <td th:text="'State: ' + ${address.state}"/>
+            <td th:text="'Zip: ' + ${address.zip}"/>
+        </tr>
+        <p> test </p>
+    </body>
+</html>

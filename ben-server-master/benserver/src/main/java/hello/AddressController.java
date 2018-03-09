@@ -5,11 +5,16 @@
  */
 package hello;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,22 +26,22 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AddressController {
     
-    @RequestMapping(value = "address", method = RequestMethod.GET)
-    public String address() {
+    @GetMapping(value = "address")
+    public String showForm(Model model) {
+        model.addAttribute("address", new Address());
         return "address";
     }
-    
-    @RequestMapping(value = "/submit", method = RequestMethod.POST)
-    public String addAddress(@Valid @ModelAttribute("address") Address address,
-            BindingResult result, ModelMap model) {
-        if (result.hasErrors()) {
-            return "index";
-        }
-        model.addAttribute("name", address.getName());
-        model.addAttribute("street", address.getStreet());
-        model.addAttribute("state", address.getState());
-        model.addAttribute("zip", address.getZip());
+
+    @PostMapping(value = "/submit")
+    public String submit(@ModelAttribute(value="address")Address address, Model model){
+        
         return "submit";
     }
-
+    
+    @RequestMapping(value = "list")
+    public String showList(@ModelAttribute(value="address") Address address){
+        
+        return "list";
+    }
 }
+

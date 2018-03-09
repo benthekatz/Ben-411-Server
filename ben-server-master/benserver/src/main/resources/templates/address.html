@@ -11,11 +11,11 @@ and open the template in the editor.
     </head>
     <body>
         <h2>Add an Address</h2>
-        <form method="POST" action='/submit'>
-            <p>Name: <input type='text' name='name'/></p>
-            <p>Street: <input type='text' name='street'/></p>
-            <p>State: <input type='text' name='state'/></p>
-            <p>Zip: <input type='text' name='zip'/></p>
+        <form action='#' th:action="@{/submit}" th:object="${address}" method="POST">
+            <p>Name: <input type='text' th:field="*{name}"/></p>
+            <p>Street: <input type='text' th:field="*{street}"/></p>
+            <p>State: <input type='text' th:field="*{state}"/></p>
+            <p>Zip: <input type='text' th:field="*{zip}"/></p>
             <input type='submit' value='Submit'/>
         </form>
     </body>
