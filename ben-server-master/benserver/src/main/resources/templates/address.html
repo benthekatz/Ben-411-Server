@@ -12,15 +12,11 @@ and open the template in the editor.
     <body>
         <h2>Add an Address</h2>
         <form action='#' th:action="@{/submit}" th:object="${address}" method="POST">
-            <p>Name: <input type='text' th:field="*{name}"/><span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style='color:red'>Invalid Name</span></p>
-            <p>Street: <input type='text' th:field="*{street}"/><span th:if="${#fields.hasErrors('street')}" th:errors="*{street}" style='color:red'>Invalid Street</span></p>
-            <p>State: <input type='text' th:field="*{state}"/><span th:if="${#fields.hasErrors('state')}" th:errors="*{state}" style='color:red'>Invalid State</span></p>
-            <p>Zip Code: <input type='text' th:field="*{zip}"/><span th:if="${#fields.hasErrors('zip')}" th:errors="*{zip}" style='color:red'>Invalid Zip Code</span></p>
+            <p>Name: <input type='text' th:field="*{name}"/><span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style='color:red; padding-left: 10px;'></span></p>
+            <p>Street: <input type='text' th:field="*{street}"/><span th:if="${#fields.hasErrors('street')}" th:errors="*{street}" style='color:red; padding-left: 10px;'></span></p>
+            <p>State: <input type='text' th:field="*{state}"/><span th:if="${#fields.hasErrors('state')}" th:errors="*{state}" style='color:red; padding-left: 10px;'></span></p>
+            <p>Zip Code: <input type='text' th:field="*{zip}"/><span th:if="${#fields.hasErrors('zip')}" th:errors="*{zip}" style='color:red; padding-left: 10px;'></span></p>
             <input type='submit' value='Submit'/>
-
-
-            
-
         </form>
     </body>
 </html>
