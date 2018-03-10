@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import hello.Address;
 import hello.AddressRepository;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -33,21 +35,25 @@ public class AddressController {
     }
 
     @PostMapping(value = "/submit")
-    public String submit(@ModelAttribute(value = "address") Address address) {
-        System.out.println(address.getName());
+    public String submit(@Valid @ModelAttribute(value = "address") Address address, BindingResult bindingResult) {
+        
+        if(bindingResult.hasErrors()){
+            return "address";
+        } 
+        
         Address n = new Address();
         n.setName(address.getName());
         n.setStreet(address.getStreet());
         n.setState(address.getState());
         n.setZip(address.getZip());
         addressRepository.save(n);
+        
         return "submit";
     }
 
     @GetMapping(path = "/list")
     public @ResponseBody
     Iterable<Address> getAllAddresses() {
-        // This returns a JSON or XML with the users
         return addressRepository.findAll();
     }
 }

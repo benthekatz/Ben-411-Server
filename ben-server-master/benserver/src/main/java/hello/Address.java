@@ -9,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class Address {
@@ -16,9 +19,19 @@ public class Address {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
+    
+    @NotBlank
     private String name;
+    
+    @NotBlank
     private String street;
+    
+    @NotBlank
     private String state;
+    
+    @NotBlank
+    @Size(min=5, max=5)
+    @Pattern(regexp = "[0-9]+")
     private String zip;
     
     public Integer getId() {
